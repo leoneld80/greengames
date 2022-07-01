@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include('./partials/head') %>
+
+    <body>
+
+        <%- include('./partials/header') %>
+
+            <main>
+
+
+
+                <div class="general-container">
+                    <div class="panel">
+
+                        <div class="admin-form">
+                            <h2>Panel de Administrador</h2>
+                            <a href="/admin/users">
+                                <button  class="btn inf"><i class="fa-solid fa-user-group"></i> Listar Usuarios </button>
+                            </a>
+                            <a href="/admin/">
+                                <button  class="btn inf"><i class="fa-solid fa-store"></i> Listar Productos</button>
+                            </a>
+                            <br>
+                            <form action="/admin/users/search" method="GET">
+                                
+                                <input type="text" name="searchBar" placeholder="Buscar usuario">
+                                <input type="submit" value="Buscar">
+                            </form>
+                            <br>
+                            
+                        </div>
+                        </div>
+                    </div>
+                    
+                </aside>
+                <div>
+                    <table>
+                        <tr>
+                            <th>Id</th>
+                            <th>Nombre</th>
+                            <th>Email</th>
+                            <th>Avatar</th>
+                            <th>Estado</th>
+                            <th>Admin</th>
+                            <th>Editar/Bloquear</th>
+
+                        </tr>
+
+                        <% usuarios.forEach(usuario=> {%>
+                            <td>
+                                <p>
+
+                                    <%= usuario.id %>
+                                </p>
+                            </td>
+                            <td>
+                                <%= usuario.name %>
+                            </td>
+                            <td>
+                                <%= usuario.email %>
+                               
+                            </td>
+                            <td>
+                                <div class="avatar-listado">
+
+                                    <img src="<%= usuario.avatar %>" alt="avatar-usuario">
+                                </div>
+                            </td>
+                            <td>
+                                <% if(usuario.status == 0){ %>
+                                     <p style="color: red"> Inactivo</p> 
+                                <% }else{ %>
+                                     <p style="color: green">Activo</p> 
+                                <% } %>
+                            </td>
+                            <td>
+                                <form method="POST" action="/user/edit/privilege/<%= usuario.id %>?_method=PATCH">
+                                <button id ="switch" style="background-color: transparent; border: 0cm;" type="submit"
+
+                                    <% if ( usuario.privilege == 1) { %>
+                                     <p><i class="fa-solid fa-toggle-on" style="color: green; font-size: large;"></i></p>
+                                    <% } else { %>
+                                    <p><i class="fa-solid fa-toggle-off" style="color: white; font-size: large;"></i></p>
+                                   <% } %>
+                                  
+                                </button>
+                                </form>
+                            </td>
+                            <td>
+                                <a href="/user/edit/<%=usuario.id %>">
+                                <button class="btn inf">
+                                    <i class="fa-solid fa-pen"></i></button></a>
+                                
+
+                                <form method="POST" action="/user/delete/<%=usuario.id %>?_method=delete">
+                                    <button type="submit" 
+                                    <% if (usuario.status == 1) { %>
+                                        class="btn danger">
+                                        <i class="fa-solid fa-power-off"></i></button>
+                                        
+                                        <% } else { %>
+                                            class="btn succ">
+                                        <i class="fa-solid fa-power-off"></i></button>
+                                        <% } %>
+                                </form>
+                                
+
+                                
+                            </td>
+                            </tr>
+                            <%}) %>
+                    </table>
+                </div>
+
+            </main>
+
+            <%- include('./partials/footer') %>
+
+    </body>
+    <script src="/js/adminUsers.js"></script>
+</html>

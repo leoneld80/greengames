@@ -1,0 +1,40 @@
+<header>
+    <div class="logo">
+      <a href="/"><h1>GREENGAMES</h1></a>
+    </div>
+    <div class="buscador">
+      <form action="/result" method="GET">
+        <input type="text" placeholder="Buscar..." name="searchBar"/>
+        <button type="submit"><i class="fas fa-search"></i></button>
+      </form>
+    </div>
+    <nav class="nav-bar">
+      <% if (locals.isLogged) { %>
+        <ul class="bar">
+          <li class="browsing"><a href="/product/cart"><i class="fa-solid fa-cart-shopping" title="Carrito"></i></a></li>
+          <li class="browsing"><a href="/user/logout">
+            <i class="fa-solid fa-arrow-right-from-bracket" title="Cerrar Sesión"></i>
+          </a></li>
+          <li>
+            <a href="/user/profile">
+
+              <img src="<%= user.avatar %>" class="avatar" alt="">
+            </a>
+          </li>
+          <li>Hola <%= user.name  %> </li>
+        </ul>
+      <% } else{ %>
+
+        <ul class="bar">
+          <li class="browsing"><a href="/product/cart"><i class="fa-solid fa-cart-shopping" title="Carrito"></i></a></li>
+          <li class="browsing"><a href="/user/login"><i class="fa-solid fa-user" title="Iniciar sesión"></i></a></li>
+        </ul>
+       <% } %> 
+    </nav>
+    <nav class="burguer">
+      <ul>
+        <li><a href="/"><i class="fa-solid fa-house"></i></a></i></li>
+        <li><a href="/product/cart"><i class="fa-solid fa-cart-shopping"></i></a></li>
+      </ul>
+    </nav>
+  </header>

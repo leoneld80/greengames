@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include('./partials/head') %>
+<body>
+
+  <%- include('./partials/header') %>
+
+  <main class='product-cart'>
+    <h1 class='tu-carrito'>
+      Tu carrito
+    </h1>
+    <div class="bloque">
+    <section class="bloque-de-productos">
+      <div id="lista-de-productos" class='lista-de-productos'>
+
+      </div>
+    </section>
+    <article class="checkout">
+      <div class="contenido-checkout">
+        <div class="titulo-resumen">
+          <span>Resumen de compra</span>
+        </div>
+        <div class="subtotal-resumen">
+          <p>Subtotal</p>
+          <p id="subtotal-resumen"">$</p>
+        </div>
+        <div class="total-resumen">
+          <p>Total</p>
+          <p id="total-price">$</p>
+        </div>
+        <div class="boton-resumen">
+        <button id="buy" class="boton-compra"><a id="boton-compra-gede"href="/product/buying">COMPRAR</a></button>
+        <button class="boton-sigue">SEGUIR COMPRANDO</button>
+        </div>
+      </div>
+    </div>
+    </article>
+    
+  </main>
+  <%- include('./partials/footer') %>
+  
+</body> 
+<script src="/js/productCart.js"></script>
+</html>

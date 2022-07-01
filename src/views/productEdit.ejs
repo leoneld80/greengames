@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('./partials/head') %>
+
+  <body>
+    <%- include('./partials/header') %>
+
+    <main>
+      <div class="general-container">
+        <div class="register">
+          <i class="fa-solid fa-pen-circle"></i>
+          <h2 class="texto-de-registro">Estas editando:</h2>
+          <h4 class="registro-manual"><%= product.name %></h4>
+          <div class="register-form">
+            <form
+              method="POST"
+              action="/product/edit/<%= product.id %>?_method=PUT"
+              enctype="multipart/form-data"
+            >
+              <h3>Id: <%= product.id %><br /></h3>
+              <label for="name">Nombre:</label><br />
+              <input
+                type="text"
+                id="username"
+                name="name"
+                value="<%= product.name %>"
+                class="form-input <%= locals.errors && errors.name ? "is-invalid" : null %>" 
+                
+              /><br />
+              <p id="username-errors" class="errors"></p>
+              <% if (locals.errors && errors.name) { %>
+                <div class="errors"> 
+                  <%= errors.name.msg %> 
+                </div>
+              <% } %>
+              <label for="price">Precio:</label><br />
+              <input
+                type="number"
+                id="price"
+                name="price"
+                value="<%= product.price %>"
+                class="form-input <%= locals.errors && errors.price ? "is-invalid" : null %>"
+              /><br />
+              <p id="price-errors" class="errors"></p>
+              <% if (locals.errors && errors.price) { %>
+                <div class="errors"> 
+                  <%= errors.price.msg %> 
+                </div>
+              <% } %>
+              <div style="margin: 10%">
+                <label for="image">Imagen Principal:</label><br />
+                <img
+                  src="<%= product.image %>"
+                  width="300"
+                  id="myImg"
+                  alt="imagen-principal"
+                />
+                <div>
+                  <label for="image">Reemplazar imagen principal</label>
+                  <input type="file" name="image" id="image"  class="<%= locals.errors && errors.image ? "is-invalid" : null %>"><br />
+                  <% if (locals.errors && errors.image) { %>
+                    <div class="errors"> 
+                      <%= errors.image.msg %> 
+                    </div>
+                  <% } %>
+                  </div>
+                  <p id="image-errors" class="errors"></p>
+                </div>
+                <!-- The Modal -->
+                <div id="imageModal" class="modal">
+                  <!-- The Close Button -->
+                  <span class="close">&times;</span>
+
+                  <!-- Modal Content (The Image) -->
+                  <img class="modal-content" id="img01" />
+                </div>
+
+                <br />
+              </div>
+              <label for="image">Galeria de Imágenes:</label><br />
+              <% images.forEach(element => { %>
+                <a href="/product/image/<%= element.id %>">
+                  <img
+                  src="<%= element.address%>"
+                  class="product-images"
+                  alt="imagen-producto"
+                  />
+                  
+                </a>
+                <% }) %>
+                <br>
+                <label for="image">Subir nuevas Imagenes</label>
+                <br>
+                <input type="file" name="gallery" id="images" multiple class="<%= locals.errors && errors.gallery ? "is-invalid" : null %>"><br>
+                <% if (locals.errors && errors.gallery) { %>
+                  <div class="errors"> 
+                    <%= errors.gallery.msg %> 
+                  </div>
+                <% } %>
+                <!-- <p id="gallery-errors" class="errors"></p> -->
+                
+                <label for="specs">Requisitos:</label>
+                <br>
+                <textarea name="specs" id="specs" cols="30" rows="10" class="form-input <%= locals.errors && errors.specs ? "is-invalid" : null %>"><%= product.specs %></textarea>
+                <% if (locals.errors && errors.specs) { %>
+                  <div class="errors"> 
+                    <%= errors.specs.msg %> 
+                  </div>
+                <% } %>
+                <p id="specs-errors" class="errors"></p>
+    
+                <label for="description">Descripción:</label>
+                <textarea name="description" id="description" cols="30" rows="10" class="form-input <%= locals.errors && errors.description ? "is-invalid" : null %>"><%= product.description %></textarea>
+                <% if (locals.errors && errors.description) { %>
+                  <div class="errors"> 
+                    <%= errors.description.msg %> 
+                  </div>
+                  <% } %>
+                  <!-- <p id='description-errors' class="errors"></p> -->
+                <label for="discountProduct">Descuento: %</label>
+                <input type="number" name="discount" id="discount" value="<%= product.discount %>" class="form-input <%= locals.errors && errors.discount ? "is-invalid" : null %>">
+                <p id="discount-errors" class="errors"></p>
+                <% if (locals.errors && errors.discount) { %>
+                  <div class="errors"> 
+                    <%= errors.discount.msg %> 
+                  </div>
+                <% } %>
+
+                <div class="submit-button">
+                  <input type="submit" id="submit" value="Guardar Cambios">
+                </div>
+                <div class="back-button">
+                  <p><a href="/admin">Volver al listado</a></p>
+                </div>
+
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <%- include('./partials/footer') %>
+    </main>
+  </body>
+  <!-- <script src="/js/productEdit.js"></script> -->
+  <script src="/js/image-modal.js"></script>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <%- include('./partials/head') %>
+
+<body>
+
+  <%- include('./partials/header') %>
+
+  <main>
+    <% if(products.length > 0){ %>
+      <h1 id="result-message"><%= products.length %> resultados coinciden con tu busqueda</h1>
+      <% } %>   
+    <% if(products.length == 0){ %>
+      <h1 id="result-message">No hay resultados para tu busqueda :(</h1>
+   <% }else{ products.forEach(product =>{ %>
+  <div class="result-container">
+       <a class='result-a' href="/product/detail/<%= product.dataValues.id %>">
+          <table class="article-result">
+              <tr>
+                  <th id="result-image"><img class="article-result-image" src=<%= product.dataValues.image %>></th> 
+
+                  <th><h4 class="article-result-article"><%= product.dataValues.name %></h4></th>
+                  <th> <p class="article-result-description"><%= product.dataValues.description %></p></th>
+               </tr>
+            </table>
+         </a>
+</div>
+   <% }) %>
+   <% } %>
+  </main>
+
+
+</body>

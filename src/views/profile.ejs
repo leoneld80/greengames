@@ -1,0 +1,52 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<%- include('./partials/head') %>
+
+<body>
+
+  <%- include('./partials/header') %>
+<main class="profilemain">
+    <section class="seccion-perfil-usuario">
+        <div class="perfil-usuario-header">
+            <div class="perfil-usuario-portada"> <!--Acá puede ir un src="" para el fondo de portada-->
+                <div class="perfil-usuario-avatar">
+                    <img src="<%= user.avatar  %>" alt="Foto de perfil del usuario">
+                </div>
+            </div>
+        </div>
+            <div class="perfil-usuario-body">
+                 <div class="perfil-usuario-bio">
+                     <h3 class="username"><%= user.name %></h3>
+                          <p class="texto">Hola, en este espacio podrás gestionar la información de tu cuenta</p>
+                </div>
+                    <div class="perfil-usuario-bio">
+                     <p class="texto">Estás registrado con la dirección de mail <strong><%= user.email  %> </strong></p>
+                    </div>
+                    <div >
+                        <% if ( user.privilege == 1) { %>
+                         
+                            <a href="/admin/">
+                                <button type="button" class="btn warn">Panel de Administrador</button>
+
+                        <% } %>
+                    </div>
+                         <div >
+                            <a href="/user/edit/password/<%= user.id %>">
+                                <button type="button" class="btn inf">Editar contraseña</button>
+                        </div>
+                        <div >
+                            <a href="/user/edit/<%= user.id %>">
+                                <button type="button" class="btn inf">Editar usuario</button>
+                        </div>
+                    </div>
+                    <p> <% sales.forEach(element => { %>
+                        <%= element.Product  %> 
+                    <% }) %> </p>
+    </section>
+    </main>
+</body>
+
+<%- include('./partials/footer') %>
+
+</html>

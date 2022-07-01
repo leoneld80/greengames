@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <%- include('./partials/head') %>
+
+<body>
+
+  <%- include('./partials/header') %>
+
+  <main class="main-index">
+    <!----- Slideshow container ----->
+
+
+    <%- include('./partials/sliderX') %>
+
+   
+
+    <%- include('./partials/popularOffers') %> <%# Card section called ofertas populares %>
+    <%- include('./partials/bestSellers') %> <%# Card section called ofertas populares %>
+
+    <section class="featured-product">
+      <h2>Producto Destacado</h2>
+      <div class="featured-box">
+        <div class="featured-img">
+          <img src="<%= products[2].image %> " alt="">
+        </div>
+        <div class="featured-text">
+          <h4><%= products[2].name  %> </h4>
+          <p><%= products[2].description %> </p>
+          <a href="/product/detail/<%= products[2].id %>">
+            <button>+INFO</button>
+          </a>
+        </div>
+      </div>
+    </section>
+
+
+      <%- include('./partials/newReleases') %> <%# Card section called ofertas populares %>
+
+
+        
+        <%- include('./partials/offers') %> <%# Card section called ofertas populares %>
+
+    </section>
+
+
+
+  </main>
+
+  <%- include('./partials/footer') %>
+
+</body>
+
+</html>

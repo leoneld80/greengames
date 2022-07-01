@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include('./partials/head') %>
+
+    <body>
+
+        <%- include('./partials/header') %>
+
+            <main>
+
+
+
+                <div class="general-container">
+                    <div class="panel">
+
+                        <div class="admin-form">
+                            <h2>Panel de Administrador</h2>
+                            <a href="/product/create">
+                                <button class="btn inf"><i class="fa-solid fa-cart-plus"></i> Nuevo Producto</button>
+                            </a>
+                            <a href="/admin/users">
+
+                                <button class="btn inf"><i class="fa-solid fa-user-group"></i> Listar Usuarios</button>
+                            </a>
+                          
+                            <br>
+                            <form action="/admin/search" method="GET">
+                                
+                                <input type="text" name="searchBar" placeholder="Buscar producto">
+                                <input type="button" value="Buscar">
+                            </form>
+                            <br>
+                            
+                        </div>
+                        </div>
+                    </div>
+                    
+                </aside>
+                <div>
+                    <table>
+                        <tr>
+                            <th>Id</th>
+                            <th>Nombre</th>
+                            <th>Precio</th>
+                            <th>Descuento</th>
+                            <th>Editar/eliminar</th>
+
+                        </tr>
+
+                        <% productos.forEach(productos=> {%>
+                            <td>
+                                <p>
+
+                                    <%= productos.id %>
+                                </p>
+                            </td>
+                            <td>
+                                <%= productos.name %>
+                            </td>
+                                             <td>
+                                $ <%= productos.price %>
+                            </td>
+                            <td>
+                                <% if (!productos.discount) { %>
+                                    -
+                                    <% } %>
+                                        <%= productos.discount %> %
+                            </td>
+                            <td>
+                                <div >
+
+                                    <div >
+                                        <a href="/product/edit/<%= productos.id %>">
+                                            <button type="button" class="btn inf"><i class="fa-solid fa-pen"></i></button>
+                                            </a>
+                                        <!-- <button class="btn info">Editar</button></a> -->
+                                                                </div>
+                                             </div>
+                                          <div >
+
+                                    <form method="POST" action="/product/delete/<%= productos.id %>?_method=delete">
+                                        <!-- <p class="btn danger">Eliminar</p> -->
+                                        <button type="submit" class="btn danger"><i class="fa-solid fa-trash-can"></i></button>
+                                    </form>
+                                    
+                                   
+                                </div>
+
+                                
+                            </td>
+                            </tr>
+                            <%}) %>
+                    </table>
+                </div>
+
+            </main>
+
+            <%- include('./partials/footer') %>
+
+    </body>
+
+</html>
